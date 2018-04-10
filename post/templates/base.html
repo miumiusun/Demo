@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>论坛</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style type="text/css">
+        body {padding-top: 60px;}
+    </style>
+    {% block ext_css %}{% endblock %}
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+        <div class="container">
+            技术论坛
+        </div>
+    </nav>
+    <div>{% block content %}{% endblock %}</div>
+
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    {% block ext_js %}{% endblock %}
+</body>
+
+</html>
