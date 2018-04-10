@@ -4,8 +4,8 @@ from post.models import Post
 
 
 def post_list(request):
-    data = {}
-    return render(request, 'post_list.html', data)
+    posts = Post.objects.all()
+    return render(request, 'post_list.html', {'posts': posts})
 
 
 def create(request):
