@@ -3,7 +3,7 @@
 {% block content %}
 
 <div>{{ post.title }}</div>
-
+<div><a href="/post/edit/?post_id={{ post.id }}">修改</a></div>
 <hr>
 
 <div>{{ post.content  | linebreaks }}</div>
