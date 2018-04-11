@@ -50,5 +50,6 @@ def edit(request):
 
 
 def search(request):
-    data = {}
-    return render(request, 'search.html', data)
+    keyword = request.POST.get('keyword', '')
+    posts = Post.objects.filter(content__contains=keyword)
+    return render(request, 'search.html', {'posts': posts})
