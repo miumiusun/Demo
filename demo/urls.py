@@ -19,6 +19,7 @@ from post import views as post_views
 
 
 urlpatterns = [
+    url(r'^$', post_views.post_list),
     url(r'^post/list/', post_views.post_list),
     url(r'^post/create/', post_views.create),
     url(r'^post/read/', post_views.read),
