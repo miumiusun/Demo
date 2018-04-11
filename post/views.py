@@ -6,7 +6,6 @@ from post.models import Post
 
 
 def post_list(request):
-    # posts = Post.objects.all()
     page = int(request.GET.get('page', 0)) or 1  # 当前页数
     total = Post.objects.count()              # 文章总数
     pages = ceil(total / 10)                  # 总页数

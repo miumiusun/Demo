@@ -28,11 +28,22 @@ def register(request):
 def login(request):
     if request.method == 'POST':
         # 取出 POST 数据
+        nickname = request.POST.get('nickname')
+        password = request.POST.get('password')
+        try:
+            user = User.objects.get(nickname=nickname)
+        except User.DoesNotExist as e:
+            return render(request, 'login.html', {'error': e})
+
         # 验证密码
-        # session 写入登陆状态
-        # 跳转到 用户信息页
-        pass
-    return render(request, 'login.html', {})
+        if check_password(password, user.password):
+            # 向 session 写入登陆状态
+            request.session['uid'] = user.id
+            request.session['nickname'] = user.nickname
+            return redirect('/user/info/')
+        else:
+            return render(request, 'login.html', {'error': '密码错误'})
+    return render(request, 'login.html')
 
 
 def user_info(request):
@@ -43,4 +54,5 @@ def user_info(request):
 
 def logout(request):
     # 删除用户的 session 数据
-    return render(request, 'logout.html', {})
+    request.session.flush()
+    return redirect('/')
