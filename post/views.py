@@ -1,11 +1,21 @@
+from math import ceil
+
 from django.shortcuts import render, redirect
 
 from post.models import Post
 
 
 def post_list(request):
-    posts = Post.objects.all()
-    return render(request, 'post_list.html', {'posts': posts})
+    # posts = Post.objects.all()
+    page = int(request.GET.get('page', 0)) or 1  # 当前页数
+    total = Post.objects.count()              # 文章总数
+    pages = ceil(total / 10)                  # 总页数
+
+    start = (page - 1) * 10
+    end = start + 10
+    posts = Post.objects.all().order_by('-create')[start:end]
+
+    return render(request, 'post_list.html', {'posts': posts, 'pages': range(1, pages + 1)})
 
 
 def create(request):
