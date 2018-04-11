@@ -21,6 +21,7 @@ from post import views as post_views
 from user import views as user_views
 
 
+
 urlpatterns = [
     url(r'^$', post_views.post_list),
     url(r'^post/list/', post_views.post_list),
